@@ -36,6 +36,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { FridgeItem } from '~/composables/useFridgeItems'
 import { sortByExpiry } from '~/composables/useFridgeItems'
 

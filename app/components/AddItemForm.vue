@@ -50,6 +50,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 const emit = defineEmits<{ submit: [name: string, date: string] }>()
 
 const name = ref('')

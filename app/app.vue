@@ -16,6 +16,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import type { FridgeItem } from '~/composables/useFridgeItems'
 import { loadItems, saveItems, sortByExpiry } from '~/composables/useFridgeItems'
 
