@@ -1,9 +1,13 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="min-h-dvh bg-paper-2">
     <div class="mx-auto max-w-xl px-4 py-8 sm:py-12">
       <header class="mb-8">
-        <h1 class="text-2xl font-bold text-gray-900">Fridge Watchlist</h1>
-        <p class="text-sm text-gray-500 mt-1">Track what's expiring before your next shop</p>
+        <h1 class="text-2xl font-bold text-ink tracking-tight">
+          Fridge Watchlist
+        </h1>
+        <p class="text-sm text-muted mt-1.5">
+          Track what's expiring before your next shop
+        </p>
       </header>
 
       <AddItemForm @submit="addItem" />
