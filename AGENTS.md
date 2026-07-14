@@ -23,61 +23,24 @@ Final score = average of 3 categories. Tiebreak: (1) highest category, (2) earli
 ## Definition of Done per Category
 
 ### Problem Solving & Design
-- [ ] Clear problem statement addressed: tracking fridge items before expiry
-- [ ] User flow implemented: add item → live list update → delete item
+- [ ] Clear problem: tracking fridge items before expiry
+- [ ] User flow: add item → live list update → delete item
 - [ ] Visual hierarchy: status badge is most scannable element
-- [ ] Form is frictionless: keyboard-friendly, Enter submission
-- [ ] No over-engineering: minimal animations that don't hinder glance test
+- [ ] Frictionless form: keyboard-friendly, Enter submission
+- [ ] No over-engineering: minimal animations, glance-test friendly
 
 ### Completeness
-- [ ] All required features implemented:
-  - Food name input
-  - Expiry date selection
-  - Live-updating list with food name, expiry date, status badge
-  - Delete button per item
-  - Auto-sorting (soonest expiring at top)
-  - localStorage persistence with fallback
-- [ ] Functional correctness:
-  - Status calculation: Fresh (>3 days), Expiring Soon (1-3 days), Expired (<1 day)
-  - Edge case: expiry = today counts as Expiring Soon (0 days left)
-  - Consistent "today vs yesterday" definition using local timezone
-- [ ] Robustness:
-  - Input validation: empty name/date/invalid date → blocked with clear feedback
-  - Empty state: informative message when no items
-  - localStorage error handling: graceful fallback if unavailable/corrupt
-  - Responsive: usable on mobile (glance-test friendly)
+- [ ] Required features: name input, expiry date, live list with badge, delete, auto-sort, localStorage
+- [ ] Functional correctness: Fresh (>3d), Expiring Soon (0-3d, today=0), Expired (<0d); local timezone
+- [ ] Robustness: input validation, empty state, localStorage fallback, responsive mobile
 
 ### Technical Craft
-- [ ] Technical soundness:
-  - Type-safe TypeScript usage
-  - Proper timezone-aware date logic (browser local time)
-  - No backend/auth dependencies
-  - localStorage sync on every change
-- [ ] Code quality:
-  - Consistent formatting
-  - Proper component separation
-  - Clear composable logic
-  - Meaningful variable/function names
-- [ ] Security:
-  - XSS prevention (proper escaping of user inputs)
-  - No sensitive data storage
-  - Input sanitization
-- [ ] Craft:
-  - Thoughtful color system with accessible contrast
-  - Consistent typography and spacing
-  - Polished visual details
-  - Intentional design decisions documented
+- [ ] Technical soundness: type-safe TS, timezone-aware dates, no backend, localStorage sync
+- [ ] Code quality: consistent formatting, separated components, clear composable, meaningful names
+- [ ] Security: XSS prevention, no sensitive data, input sanitization
+- [ ] Craft: accessible colors, consistent spacing/typography, polished details, documented decisions
 
 ## Additional Requirements
 - [ ] Real unit and/or e2e tests (not placeholder)
-- [ ] Project-specific README (not default Nuxt starter):
-  - Feature overview
-  - Installation & running instructions
-  - Testing instructions
-  - Design decisions
-  - Business rules (Fresh/Expiring Soon/Expired definitions)
-- [ ] Each commit:
-  - Pushed to remote
-  - Under 25KB size
-  - Logical scope (per feature/todo)
-  - Clear, descriptive message
+- [ ] Project-specific README: feature overview, install/run, testing, design decisions, business rules
+- [ ] Each commit: pushed to remote, under 25KB, logical scope, clear message

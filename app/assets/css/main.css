@@ -1,61 +1,41 @@
 /* do not change or remove this file */
 @import "tailwindcss";
 
-/* ─── Hallmark · genre: modern-minimal · theme: custom (utilitarian tool) ─── */
-/* tone: utilitarian · audience: home cooks · use case: glance-before-shop */
-/* states: default · hover · focus · active · disabled · loading · error · success */
-
 @theme {
-  /* Surfaces — cool-neutral paper stack */
+  /* surfaces — cool-neutral paper */
   --color-paper:    oklch(96% 0.004 200);
   --color-paper-2:  oklch(93% 0.006 200);
   --color-rule:     oklch(84% 0.006 200);
   --color-rule-2:   oklch(78% 0.006 200);
   --color-muted:    oklch(46% 0.005 190);
   --color-ink:      oklch(20% 0.005 180);
-
-  /* Accent — blue for interactive elements */
+  /* accent — blue interactive */
   --color-accent:       oklch(48% 0.18 230);
   --color-accent-hover: oklch(42% 0.18 230);
   --color-accent-ink:   oklch(96% 0.01 230);
   --color-focus-ring:   oklch(52% 0.19 230);
-
-  /* Status badge palette — accessible on paper bg */
+  /* status — accessible on paper bg */
   --color-fresh-text:    oklch(42% 0.16 145);
   --color-fresh-bg:      oklch(90% 0.05 145);
   --color-fresh-border:  oklch(78% 0.06 145);
-
   --color-expiring-text:   oklch(46% 0.14 80);
   --color-expiring-bg:     oklch(92% 0.04 80);
   --color-expiring-border: oklch(80% 0.05 80);
-
   --color-expired-text:    oklch(42% 0.17 25);
   --color-expired-bg:      oklch(90% 0.05 25);
   --color-expired-border:  oklch(78% 0.06 25);
-
-  /* Danger — for delete affordance */
+  /* danger — delete affordance */
   --color-danger:       oklch(52% 0.2 15);
   --color-danger-hover: oklch(46% 0.2 15);
   --color-danger-bg:    oklch(93% 0.04 15);
-
-  /* Easing tokens */
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in:     cubic-bezier(0.7, 0, 0.84, 0);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-
-  /* Durations */
   --dur-instant: 0ms;
   --dur-short:   150ms;
   --dur-med:     250ms;
 }
 
-/* ─── Root safeguards — gate 36 / 62 (no horizontal scroll) ─── */
-html, body {
-  overflow-x: clip;
-}
-
-/* Prevent long food names from forcing overflow on mobile (gate 63) */
-h1, p {
-  overflow-wrap: anywhere;
-  min-width: 0;
-}
+/* root safeguards: gate 36/62 no horizontal scroll; gate 63 long-word wrap */
+html, body { overflow-x: clip; }
+h1, p { overflow-wrap: anywhere; min-width: 0; }
