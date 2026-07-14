@@ -21,6 +21,8 @@
     "@vitejs/plugin-vue": "^6.0.8",
     "@vue/test-utils": "^2.4.11",
     "happy-dom": "^20.10.6",
-    "vitest": "^3.2.7"
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.7",
+    "vue-tsc": "^3.3.7"
   }
 }
