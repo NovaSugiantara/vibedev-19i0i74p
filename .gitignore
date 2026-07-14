@@ -24,3 +24,5 @@ logs
 !.env.example
 
 repomix-*.*
+AGENTS.md
+package-lock.json
