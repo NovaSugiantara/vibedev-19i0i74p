@@ -1,10 +1,10 @@
 <template>
   <span
-    class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold border min-h-[28px]"
+    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold border"
     :class="classes"
     role="status"
   >
-    <span class="relative top-[0.5px]">{{ icon }}</span>
+    <span class="h-1.5 w-1.5 rounded-full" :class="dotClass" aria-hidden="true" />
     {{ label }}
   </span>
 </template>
@@ -14,23 +14,23 @@ import type { ExpiryStatus } from '~/composables/useFridgeItems'
 
 const props = defineProps<{ status: ExpiryStatus }>()
 
-const config: Record<ExpiryStatus, { label: string; icon: string; classes: string }> = {
+const config: Record<ExpiryStatus, { label: string; classes: string; dotClass: string }> = {
   fresh: {
     label: 'Fresh',
-    icon: '\u25CF',
     classes: 'bg-fresh-bg text-fresh-text border-fresh-border',
+    dotClass: 'bg-fresh-text',
   },
   'expiring-soon': {
     label: 'Expiring Soon',
-    icon: '\u25CB',
     classes: 'bg-expiring-bg text-expiring-text border-expiring-border',
+    dotClass: 'bg-expiring-text',
   },
   expired: {
     label: 'Expired',
-    icon: '\u2715',
     classes: 'bg-expired-bg text-expired-text border-expired-border',
+    dotClass: 'bg-expired-text',
   },
 }
 
-const { label, icon, classes } = config[props.status]
+const { label, classes, dotClass } = config[props.status]
 </script>
