@@ -69,15 +69,32 @@ Sorting is by expiry date ascending (soonest first). Ties keep insertion order.
 
 ## Design Decisions
 
-- **Design system:** built following the Hallmark design principles — clear visual
-  hierarchy, minimal motion, glance-test friendly. The status badge is the
-  most scannable element (colored pill, bold label).
-- **Color system (accessible, high-contrast text on tinted background):**
-  - Fresh → green (`bg-green-100` / `text-green-800`)
-  - Expiring Soon → amber (`bg-amber-100` / `text-amber-800`)
-  - Expired → red (`bg-red-100` / `text-red-800`)
-- **Typography & spacing:** Tailwind's default scale; a single max-width container
-  (`max-w-xl`) for comfortable reading on both phone and desktop.
+- **Design system:** built with the [Hallmark](https://opencode.ai) design system — a
+  token-driven OKLCH palette with accessible contrast, 4pt spacing, and disciplined
+  microinteractions. All tokens live in `app/assets/css/main.css` as `--color-*` and
+  `--dur-*` / `--ease-*` custom properties consumed by Tailwind `@theme` directives.
+- **Hallmark pre-emit self-critique:** P5 H5 E5 S5 R5 V5 — philosophy (clear problem
+  fit), hierarchy (badge is most scannable), execution (OKLCH tokens + 8-state
+  interaction + 44px touch targets), specificity (designed for this brief, not a
+  template), restraint (no animations that hinder glance test), variety (utilitarian
+  tool, not another landing page).
+- **Status color tokens (accessible, ≥ 5.68:1 contrast on background):**
+  - **Fresh** — `oklch(42% 0.16 145)` on `oklch(90% 0.05 145)` (5.83:1)
+  - **Expiring Soon** — `oklch(46% 0.14 80)` on `oklch(92% 0.04 80)` (5.68:1)
+  - **Expired** — `oklch(42% 0.17 25)` on `oklch(90% 0.05 25)` (6.74:1)
+  All badges pair text with a non-color icon (●, ○, ✕) for red-green deficient users.
+- **Interactive element states:** every input and button handles all 8 interaction
+  states: default, hover (within `touch-manipulation`), `:focus-visible` (2px ring,
+  never border-width change), `:active` (translateY), disabled (opacity 0.5), loading
+  (spinner on Add button), error (`aria-invalid` + warning text), and success (auto
+  reset on submit). Touch targets are ≥ 44×44px.
+- **Responsive safeguards (gate 36/62):** `html, body { overflow-x: clip }` — never
+  hidden (preserves sticky/fixed), never `100vw`. Headers use `overflow-wrap: anywhere`.
+  All forms collapse to single-column below 640px (`sm:` breakpoint).
+- **Pre-bundled deps:** `vite.optimizeDeps.include` configured in `nuxt.config.ts`
+  for `vue`, `@vue/runtime-*` — prevents full page reloads on first dev navigation.
+- **Typography & spacing:** 4pt scale via Tailwind + `@theme` tokens. Single max-width
+  container (`max-w-xl`) for comfortable reading on both phone and desktop.
 - **Form friction:** native `<input type="date">` (no picker library), Enter-to-submit,
   and autofocus back to the name field after adding.
 - **Robustness:** `localStorage` reads are wrapped in `try/catch` and validate each stored
