@@ -1,14 +1,13 @@
 # Fridge Expiry Watchlist
 
-Single-page Nuxt app for tracking fridge items before they expire. Add a food name and expiry date, then scan a live, auto-sorted list with a clear status badge. Everything stays in the browser via `localStorage`; there is no backend or auth.
+Nuxt app for tracking fridge items before they expire. Browser-only state via `localStorage`; no backend, no auth.
 
 ## Features
 
-- Add, view, and delete fridge items
+- Add, view, delete items
 - Auto-sort by soonest expiry
-- Status badges for **Fresh**, **Expiring Soon**, and **Expired**
-- `localStorage` persistence with fallback for corrupt or unavailable storage
-- Validation, empty state, and mobile-friendly layout
+- Status badges: **Fresh**, **Expiring Soon**, **Expired**
+- Validation, empty state, mobile layout, safe `localStorage` fallback
 
 ## Install & Run
 
@@ -25,23 +24,23 @@ npm run build && npm run preview
 npm test
 ```
 
-Coverage lives in `tests/useFridgeItems.test.ts` for date math, sorting, validation, and storage handling, and `tests/AddItemForm.test.ts` for form validation and submit behavior.
+`tests/useFridgeItems.test.ts` covers date math, sorting, validation, storage. `tests/AddItemForm.test.ts` covers form validation and submit.
 
 ## Business Rules
 
-Date math uses the browser's local timezone. “Today” means the current local calendar day.
+Local timezone only. Today = current local calendar day.
 
-| Status | Rule |
-| --- | --- |
-| **Fresh** | More than 3 days left |
+| Status            | Rule                           |
+| ----------------- | ------------------------------ |
+| **Fresh**         | More than 3 days left          |
 | **Expiring Soon** | 0-3 days left, including today |
-| **Expired** | Less than 0 days left |
+| **Expired**       | Less than 0 days left          |
 
-An item expiring today is **Expiring Soon**, not Expired. Sorting is ascending by expiry date; ties keep insertion order.
+Today = **Expiring Soon**. Sort ascending by expiry; ties keep insertion order.
 
 ## Design Notes
 
-- Token-based OKLCH palette and 4px spacing in `app/assets/css/main.css`
-- Accessible status badges with color plus icon cue
-- Tight responsive layout; forms collapse to one column on small screens
-- `localStorage` reads are guarded so private browsing or corrupt data does not break the app
+- OKLCH tokens and 4px spacing in `app/assets/css/main.css`
+- Status badges use color plus icon cue
+- Forms collapse to one column on small screens
+- `localStorage` reads are guarded against private browsing and corrupt data
