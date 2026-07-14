@@ -5,6 +5,7 @@ import {
   sortByExpiry,
   loadItems,
   saveItems,
+  isValidDateString,
   type FridgeItem,
 } from '~/composables/useFridgeItems'
 
@@ -109,5 +110,25 @@ describe('localStorage persistence', () => {
       throw new Error('blocked')
     })
     expect(loadItems()).toEqual([])
+  })
+})
+
+describe('isValidDateString', () => {
+  it('accepts real dates', () => {
+    expect(isValidDateString('2026-03-15')).toBe(true)
+    expect(isValidDateString('2026-02-28')).toBe(true)
+    expect(isValidDateString('2024-02-29')).toBe(true) // leap year
+  })
+
+  it('rejects overflow dates (Feb 31, Apr 31, etc.)', () => {
+    expect(isValidDateString('2026-02-31')).toBe(false)
+    expect(isValidDateString('2026-04-31')).toBe(false)
+    expect(isValidDateString('2026-13-01')).toBe(false)
+  })
+
+  it('rejects non-date strings', () => {
+    expect(isValidDateString('')).toBe(false)
+    expect(isValidDateString('abc')).toBe(false)
+    expect(isValidDateString('2026/03/15')).toBe(false)
   })
 })

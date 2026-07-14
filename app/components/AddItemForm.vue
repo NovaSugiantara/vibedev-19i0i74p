@@ -78,9 +78,13 @@
       v-if="hasError"
       id="form-error"
       role="alert"
-      class="text-xs text-danger flex items-center gap-1"
+      class="text-xs text-danger flex items-center gap-1.5"
     >
-      <span aria-hidden="true">\u26A0</span>
+      <svg class="h-3.5 w-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 9v4" />
+        <path d="M12 17h.01" />
+        <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+      </svg>
       Please enter a food name and a valid expiry date
     </p>
   </div>
@@ -88,6 +92,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { isValidDateString } from '~/composables/useFridgeItems'
 
 const emit = defineEmits<{ submit: [name: string, date: string] }>()
 
@@ -112,8 +117,7 @@ function handleSubmit() {
     return
   }
 
-  const parsed = new Date(expiryDate.value + 'T00:00:00')
-  if (isNaN(parsed.getTime())) {
+  if (!isValidDateString(expiryDate.value)) {
     hasError.value = true
     return
   }
